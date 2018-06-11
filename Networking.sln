@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Networking", "Assembly-CSharp.csproj", "{1F14DBB1-0CE9-AC1B-4FB8-ED0D0AEE9840}"
+EndProject
+Project("{A5FA5746-370B-6080-90B9-94A97B49E98B}") = "Networking", "Assembly-UnityScript.unityproj", "{82ACBF59-83B0-580C-6DC1-90FCD4A6612B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F14DBB1-0CE9-AC1B-4FB8-ED0D0AEE9840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F14DBB1-0CE9-AC1B-4FB8-ED0D0AEE9840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F14DBB1-0CE9-AC1B-4FB8-ED0D0AEE9840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F14DBB1-0CE9-AC1B-4FB8-ED0D0AEE9840}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82ACBF59-83B0-580C-6DC1-90FCD4A6612B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82ACBF59-83B0-580C-6DC1-90FCD4A6612B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82ACBF59-83B0-580C-6DC1-90FCD4A6612B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82ACBF59-83B0-580C-6DC1-90FCD4A6612B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
