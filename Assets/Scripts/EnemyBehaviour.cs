@@ -39,30 +39,6 @@ public class EnemyBehaviour : NetworkBehaviour {
 
 		int bulletLayer = (1 >> 8) | (1 << 9);
 
-
-		/*if(Physics.Raycast(transform.position,Vector3.down,out hit,100f))
-		{
-
-			if (hit.collider.CompareTag ("Terrain")) {
-				Debug.Log ("HIT GROUND");
-				
-				Debug.DrawRay (transform.position, Vector3.down * 100f, Color.yellow);
-				//get where on the z axis our raycast hit the ground
-				float y = hit.point.y;
-
-				//copy current position into temporary container
-				Vector3 pos = transform.position;
-
-				//change z to where on the z axis our raycast hit the ground
-				pos.y = y;
-
-				//override our position with the new adjusted position.
-				transform.position = pos;
-			} else {
-				return;
-			}
-		}*/
-
 		RaycastHit LoS;
 
 		Players = GameObject.FindGameObjectsWithTag ("Player");

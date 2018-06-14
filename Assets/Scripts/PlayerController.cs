@@ -9,14 +9,32 @@ public class PlayerController : NetworkBehaviour
 	public Camera camera;
 	public Rigidbody rb;
 
+	public float MinDistance = 2.0f;
+	public float MaxDistance = 5.0f;
+	public float MaxForce = 15.0f;
+
 	float speed = 10f;
 	float horizontal;
 	float slowModifier = 0.9f;
 
 	Vector3 currentVel;
 	Vector3 Eulervelo;
+	Vector3 curPos;
+
+	int terrainLayer = 1 >> 10;
 
 	RaycastHit floaty;
+
+	float RaycastDownwardsFromMe()
+	{
+		RaycastHit rch;
+		if (Physics.Raycast ( transform.position, Vector3.down, out rch, MaxDistance))
+		{
+			Debug.DrawRay (transform.position, Vector3.down * rch.distance, Color.green);
+			return rch.distance;
+		}
+		return 100;
+	}
 
 	void Start(){
 		
@@ -51,12 +69,30 @@ public class PlayerController : NetworkBehaviour
 
 		transform.Translate(0, 0, vertical);
 		*/
+		if (rb.velocity.magnitude > 10f) {
+
+			rb.velocity = transform.forward * 10;
+		}
+
+
 
 	
 	}
 
 	void FixedUpdate(){
-		
+		 
+
+		RaycastHit hit;    
+		if(Physics.SphereCast(transform.position, 0.5f, -(transform.up), out hit, 10f, ~terrainLayer)) 
+		{  
+			var GroundDis = hit.distance;
+			//transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+			Vector3 tempY = transform.localPosition;
+			tempY.y= (tempY.y - GroundDis) +1;
+			//transform.localPosition = new Vector3(transform.localPosition.x,tempY.y,transform.localPosition.z);
+		}
+
+
 		// Quaternion of the Euler rotation * time
 		Quaternion CharRotation = Quaternion.Euler (Eulervelo * Time.deltaTime);
 
@@ -116,7 +152,27 @@ public class PlayerController : NetworkBehaviour
 				// set velocity to new forward * the magnitude it started at
 				rb.velocity = transform.forward * currentVel.magnitude;
 			}
+		
 		}
+		//Debug.Log ("Before" + rb.velocity.magnitude);
+		if (rb.velocity.magnitude > 5f) {
+
+			rb.velocity = transform.forward * 5;
+		}
+		//Debug.Log ("after" + rb.velocity.magnitude);
+
+
+
+
+
+			float distance = RaycastDownwardsFromMe();
+			float fractionalPosition = (MaxDistance - distance) / (MaxDistance - MinDistance);
+			if (fractionalPosition < 0) fractionalPosition = 0;
+			if (fractionalPosition > 1) fractionalPosition = 1;
+			float force = fractionalPosition * MaxForce;
+			gameObject.GetComponent<Rigidbody>().AddForce( Vector3.up * force);	
+
+
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			CmdFire();
