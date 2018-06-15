@@ -50,7 +50,7 @@ public class EnemyBehaviour : NetworkBehaviour {
 
 
 
-				if (Vector3.Distance (target.transform.position, transform.position) > stopDistance * 5) {
+			if (Vector3.Distance (target.transform.position, transform.position) > stopDistance * 5) {
 				movespeed = 40;
 				gameObject.GetComponent<Rigidbody>().useGravity = true;
 			}else if (Vector3.Distance (target.transform.position, transform.position) > stopDistance * 4) {
